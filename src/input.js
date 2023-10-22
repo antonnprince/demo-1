@@ -40,7 +40,14 @@ const Field = () => {
           
         </div>
 
-        <button type='submit' className='submit'>
+        <button type='submit' className='submit'
+        onClick={()=>{
+          setEmail("");
+          setFname("");
+          setLname("");
+          setPhone("");
+        }}
+        >
             SUBMIT  
         </button>
         
