@@ -1,0 +1,29 @@
+
+        body {
+            font-family: Arial, sans-serif;
+            justify-content: center;
+            align-items: center;
+        }
+        .form-container {
+            width: 300px;
+            margin: 0 auto;
+        }
+        .form-group {
+            margin-bottom: 20px;
+            padding:4px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+    

@@ -1,11 +1,35 @@
-import React from 'react'
+import React from 'react';
+import './input.css'
 
-const Field = () => {
+
+const Field = ({names}) => {
+
+    
   return (
-    <div>
-      this is input1
-    </div>
-  )
-}
+    
+    <div className="form-container">
+    
+      <form>
+        {names.map((name,index)=>(
 
-export default Field
+        <div className="form-group" key={index}>
+          
+          <label>
+            
+            { name === "Phone"?`${name} Number`: `${name} Name`}
+
+          </label>
+          
+          <input type="text" id="first-name" placeholder={`Enter your ${name} name required `}/>
+
+        </div>
+       
+        ))}
+      
+      </form>
+    
+    </div>
+  );
+};
+
+export default Field;
