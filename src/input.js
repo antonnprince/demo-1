@@ -23,11 +23,11 @@ const Field = () => {
     const checkPhone=()=>{
       if (phone && Object.values(phone).every((no)=>isNaN(no)))
        {
-          alert('Enter valid phone no')
+          alert('Enter valid phone number')
         }
 
         else if(phone && Object.values(phone).length!==10){
-          alert('Enter valid phone no')
+          alert('Enter valid phone number')
         }
     }
 
