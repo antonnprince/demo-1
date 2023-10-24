@@ -15,19 +15,21 @@ const Field = () => {
       e.preventDefault();
 
       if(!name||!email||!phone||!loc){
-        alert('Please enter valid inputs. All fields are required');
+        alert('All fields are required');
         return;
       }  
-
-      else if(phone.values.every((no)=>isNaN(no))){
-          alert('Please enter valid phone number');
-      }
-
-      else if(phone.values.length>10){
-        alert('Please enter valid phone number');
-
-      }
     };
+
+    const checkPhone=()=>{
+      if (phone && Object.values(phone).every((no)=>isNaN(no)))
+       {
+          alert('Enter valid phone no')
+        }
+
+        else if(phone && Object.values(phone).length!==10){
+          alert('Enter valid phone no')
+        }
+    }
 
     
 
@@ -36,7 +38,7 @@ const Field = () => {
     
     <div className="form-container">
     
-      <form>
+      <form onSubmit={handleSubmit}>
        
         <div className="form-group">
           
@@ -62,7 +64,8 @@ const Field = () => {
           
         </div>
 
-        <button type='submit' className='submit'  onClick={handleSubmit}>
+        <button type='submit' className='submit' 
+        onClick={checkPhone}>
             SUBMIT  
         </button>
         
