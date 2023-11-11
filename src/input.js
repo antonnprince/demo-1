@@ -4,25 +4,46 @@ import './input.css';
 import axios from 'axios';
 import QRCode from 'react-qr-code';
 
+ const getUsers = 'https://bontypetee.execute-api.ap-south-1.amazonaws.com/test?collection=merchants&action=read_all'
+
+     const sendUsers = 'https://bontypetee.execute-api.ap-south-1.amazonaws.com/test?collection=merchants&action=create'
 
 const Field = () => {
-
-    useEffect(()=>{
-    axios.get(getUsers).then((res)=>{
-      setData(res)
-    })
-      },[])
     const[name,setName]=useState("");
     const[email,setEmail]=useState("");
     const [phone,setPhone]=useState(0);
     const[loc,setLoc] = useState("");
     const[setData,data] = useState([]);
     const[code,getCode]=useState(false);
- 
-    const getUsers = 'https://bontypetee.execute-api.ap-south-1.amazonaws.com/test?collection=merchants&action=create'
 
-    const sendUsers = 'https://bontypetee.execute-api.ap-south-1.amazonaws.com/test?collection=merchants&action=read_all'
+  const handleCreate = async ()=>{
 
+    try{
+      const response = await axios.post(sendUsers);
+    } catch(err)
+    {
+      console.log(err)
+    }
+
+    const handleQR = async()=>{
+      try{
+        const postData = {
+            cn: name,
+            loc:loc,
+            ph:phone,
+            em: email,
+        }
+
+        const response = await axios.post(getUsers)
+      }
+      catch(err)
+      {
+        console.log(err);
+        alert("Error making request. Please try again")
+      }
+    }
+  }
+  
     const handleSubmit=(e)=>{
      
       e.preventDefault();
