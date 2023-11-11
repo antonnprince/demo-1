@@ -6,7 +6,7 @@ import QRCode from 'react-qr-code';
 
  const getUsers = 'https://bontypetee.execute-api.ap-south-1.amazonaws.com/test?collection=merchants&action=read_all'
 
-     const sendUsers = 'https://bontypetee.execute-api.ap-south-1.amazonaws.com/test?collection=merchants&action=create'
+const sendUsers = 'https://bontypetee.execute-api.ap-south-1.amazonaws.com/test?collection=merchants&action=create'
 
 const Field = () => {
     const[name,setName]=useState("");
@@ -17,16 +17,16 @@ const Field = () => {
     const[code,getCode]=useState(false);
 
   const handleCreate = async ()=>{
-
     try{
       const response = await axios.post(sendUsers);
     } catch(err)
     {
       console.log(err)
     }
-
+  }
     const handleQR = async()=>{
       try{
+
         const postData = {
             cn: name,
             loc:loc,
@@ -34,7 +34,7 @@ const Field = () => {
             em: email,
         }
 
-        const response = await axios.post(getUsers)
+        const response = await axios.post(getUsers, postData)
       }
       catch(err)
       {
@@ -99,11 +99,16 @@ const Field = () => {
         </div>
 
         <button type='submit' className='submit' 
-          onClick={checkPhone}>
+          onClick={async()=>{checkPhone()
+         await handleCreate()
+          }}>
             SUBMIT  
         </button>
         
-        <button className='submit' onClick={()=>{getCode(!code)}}>
+        <button className='submit' 
+        onClick={async()=>{getCode(!code)
+       await handleQR()
+        }}>
             RETRIEVE USER   
         </button>
         
