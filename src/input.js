@@ -8,13 +8,15 @@ import QRCode from 'react-qr-code';
 const Field = () => {
 
     useEffect(()=>{
-    
+    axios.get(getUsers).then((res)=>{
+      setData(res)
+    })
       },[])
     const[name,setName]=useState("");
     const[email,setEmail]=useState("");
     const [phone,setPhone]=useState(0);
     const[loc,setLoc] = useState("");
-    const[setData,data] = useState();
+    const[setData,data] = useState([]);
     const[code,getCode]=useState(false);
  
     const getUsers = 'https://bontypetee.execute-api.ap-south-1.amazonaws.com/test?collection=merchants&action=create'
