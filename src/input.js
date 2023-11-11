@@ -1,14 +1,25 @@
 import React from 'react';
-import { useState,useEffect } from 'react';
-import './input.css'
+import { useState, useEffect } from 'react';
+import './input.css';
+import axios from 'axios';
+import QRCode from 'react-qr-code';
 
 
 const Field = () => {
 
+    useEffect(()=>{
+    
+      },[])
     const[name,setName]=useState("");
     const[email,setEmail]=useState("");
     const [phone,setPhone]=useState(0);
     const[loc,setLoc] = useState("");
+    const[setData,data] = useState();
+    const[code,getCode]=useState(false);
+ 
+    const getUsers = 'https://bontypetee.execute-api.ap-south-1.amazonaws.com/test?collection=merchants&action=create'
+
+    const sendUsers = 'https://bontypetee.execute-api.ap-south-1.amazonaws.com/test?collection=merchants&action=read_all'
 
     const handleSubmit=(e)=>{
      
@@ -38,7 +49,7 @@ const Field = () => {
     
     <div className="form-container">
     
-      <form onSubmit={handleSubmit}>
+      <form>
        
         <div className="form-group">
           
@@ -65,15 +76,33 @@ const Field = () => {
         </div>
 
         <button type='submit' className='submit' 
-        onClick={checkPhone}>
+          onClick={checkPhone}>
             SUBMIT  
         </button>
         
-        <button type='submit' className='submit'>
+        <button className='submit' onClick={()=>{getCode(!code)}}>
             RETRIEVE USER   
         </button>
-      
+        
       </form>
+<div class='qr'>
+
+{
+  code&& 
+  <>
+    {name}
+    <QRCode
+      title="QR code"
+      value={name}
+      bgColor='#FFFFFF'
+      fgColor='#000000'
+      size = {256}
+    />
+  </>
+                    
+}
+
+</div>
     
     </div>
   );
